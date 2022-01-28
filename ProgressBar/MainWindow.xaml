@@ -1,0 +1,42 @@
+﻿<Window x:Class="ProgressBar.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ProgressBar"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Window.Resources>
+        <Style x:Key="Style_Default" TargetType="Control">
+            <Setter Property="Margin" Value="5"/>
+        </Style>
+
+        <Style x:Key="Style_Image" TargetType="Image">
+            <Setter Property="Stretch" Value="Uniform"/>
+            <Setter Property="Width" Value="790"/>
+            <Setter Property="Height" Value="430"/>
+        </Style>
+
+        <Style x:Key="Style_Button_OpenFile" TargetType="Button"
+               BasedOn="{StaticResource Style_Default}">
+            <Setter Property="Width" Value="100"/>
+        </Style>
+        <Style x:Key="Style_Button_Color" TargetType="Button"
+               BasedOn="{StaticResource Style_Default}">
+            <Setter Property="Width" Value="15"/>
+            <Setter Property="Height" Value="15"/>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+            <Button x:Name="Button_OpenFile" 
+                    Content="Open File..." 
+                    Style="{StaticResource Style_Button_OpenFile}"
+                    Click="OpenFile_Click"/>
+            <TextBox x:Name="TextFile" Grid.Row="1"  VerticalScrollBarVisibility="Visible" AcceptsReturn="True" SpellCheck.IsEnabled="True" Language="ru-Ru"/>
+        
+    </Grid>
+</Window>
