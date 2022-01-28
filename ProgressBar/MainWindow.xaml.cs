@@ -30,17 +30,45 @@ namespace ProgressBar
         private void OpenFile_Click(object sender, RoutedEventArgs e)
         {
             var filePath = OpenFile();
-            TextFile.Text = File.ReadAllText(filePath);
+            //TextFile.Text = File.ReadAllText(filePath);
+            //TextFile.Text = filePath.Length.ToString();
+            //var fileByte = filePath.Length.ToString();
+            progressBar1.Maximum = filePath.Length;
+            //int i = 0;
+            //foreach (var b in filePath) 
+            while (filePath.Length != 0) 
+            //while (File.ReadAllBytes(filePath) != null) 
+            {
+                byte[] bytes = File.ReadAllBytes(filePath);
+                //i++;
+                progressBar1.Value++;
+            }
+            //progressBar1.Value = i;
+            TextFile.Text = progressBar1.Value.ToString();
+
+
+            //var arrByte = File.ReadAllBytes(filePath);
+            //path = filePath;
+
+        }
+        private void CountText_Click(object sender, RoutedEventArgs e)
+        {
+            var filePath = OpenFile();
             path = filePath;
-            StreamReader inStream = new StreamReader("filePath");
+            StreamReader inStream = new StreamReader(filePath);
             int i = 0;
             string line = "";
             while ((line = inStream.ReadLine()) != null)
             {
                 listBox1.Items.Add(inStream.ReadLine());
+                //listBox1.Items.Add(line);
                 i++;
+                
             }
-            progressBar1.Maximum = i;
+            /*progressBar1.Maximum = i;
+            TextFile.Text = progressBar1.Maximum.ToString();*/
+            progressBar1.Value = i;
+            TextFile.Text = progressBar1.Value.ToString();
             listBox1.SelectedIndex = 0;
         }
         private string OpenFile()
@@ -73,10 +101,11 @@ namespace ProgressBar
 
         private void listBox1_SelectedValueChanged(object sender, EventArgs e)
         {
-            if (listBox1.SelectedIndex != -1)
+            /*if (listBox1.SelectedIndex != -1)
             {
                 progressBar1.Value = listBox1.SelectedIndex;
-            }
+            }*/
+            progressBar1.Value = listBox1.SelectedIndex;
         }
     }
 }
