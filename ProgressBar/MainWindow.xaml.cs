@@ -34,14 +34,15 @@ namespace ProgressBar
             //TextFile.Text = filePath.Length.ToString();
             //var fileByte = filePath.Length.ToString();
             progressBar1.Maximum = filePath.Length;
-            //int i = 0;
+            int i = 0;
             //foreach (var b in filePath) 
-            while (filePath.Length != 0) 
-            //while (File.ReadAllBytes(filePath) != null) 
+            //while (filePath.Length != 0) 
+            while (File.ReadAllBytes(filePath) != null) 
             {
                 byte[] bytes = File.ReadAllBytes(filePath);
-                //i++;
-                progressBar1.Value++;
+                i++;
+                progressBar1.Value = bytes[i];
+                //bytes[i];
             }
             //progressBar1.Value = i;
             TextFile.Text = progressBar1.Value.ToString();
