@@ -32,11 +32,18 @@
             <RowDefinition Height="auto"></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
-            <Button x:Name="Button_OpenFile" 
+        <ProgressBar Width="100" Height="20"
+                 Name="progressBar1">
+        </ProgressBar>
+
+        <Button x:Name="Button_OpenFile" 
                     Content="Open File..." 
                     Style="{StaticResource Style_Button_OpenFile}"
                     Click="OpenFile_Click"/>
-            <TextBox x:Name="TextFile" Grid.Row="1"  VerticalScrollBarVisibility="Visible" AcceptsReturn="True" SpellCheck.IsEnabled="True" Language="ru-Ru"/>
+                <ListBox x:Name="listBox1" Width="444">
+
+        </ListBox>
+        <TextBox x:Name="TextFile" Grid.Row="1"  VerticalScrollBarVisibility="Visible" AcceptsReturn="True" SpellCheck.IsEnabled="True" Language="ru-Ru"/>
         
     </Grid>
 </Window>

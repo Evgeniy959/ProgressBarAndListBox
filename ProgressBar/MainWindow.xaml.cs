@@ -27,11 +27,21 @@ namespace ProgressBar
         {
             InitializeComponent();
         }
-        /*private void OpenFile_Click(object sender, RoutedEventArgs e)
+        private void OpenFile_Click(object sender, RoutedEventArgs e)
         {
-            var pathFile = OpenFile();
-            TextFile.Text = File.ReadAllText(pathFile);
-            path = pathFile;
+            var filePath = OpenFile();
+            TextFile.Text = File.ReadAllText(filePath);
+            path = filePath;
+            StreamReader inStream = new StreamReader("filePath");
+            int i = 0;
+            string line = "";
+            while ((line = inStream.ReadLine()) != null)
+            {
+                listBox1.Items.Add(inStream.ReadLine());
+                i++;
+            }
+            progressBar1.Maximum = i;
+            listBox1.SelectedIndex = 0;
         }
         private string OpenFile()
         {
@@ -39,11 +49,34 @@ namespace ProgressBar
             openFileDialog.Filter = "Text Files (*.txt)|*.txt";
             return openFileDialog.ShowDialog() == true ? openFileDialog.FileName : string.Empty;
         }
-        private int Count()
+        /*private int Count()
         {
             ProgressBar progbar = new ProgressBar();
             progbar.IsIndeterminate = false;
             
         }*/
+        
+
+        /*private void button1_Click(object sender, EventArgs e)
+        {
+            StreamReader inStream = new StreamReader("filePath");
+            int i = 0;
+            string line = "";
+            while ((line = inStream.ReadLine()) != null)
+            {
+                listBox1.Items.Add(inStream.ReadLine());
+                i++;
+            }
+            progressBar1.Maximum = i;
+            listBox1.SelectedIndex = 0;
+        }*/
+
+        private void listBox1_SelectedValueChanged(object sender, EventArgs e)
+        {
+            if (listBox1.SelectedIndex != -1)
+            {
+                progressBar1.Value = listBox1.SelectedIndex;
+            }
+        }
     }
 }
