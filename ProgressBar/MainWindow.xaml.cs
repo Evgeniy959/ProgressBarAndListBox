@@ -47,10 +47,10 @@ namespace ProgressBar
                 i++;
             }
             /*progressBar1.Maximum = i;
-            TextFile.Text = progressBar1.Maximum.ToString();
+            TextFile.Text = progressBar1.Maximum.ToString();*/
             progressBar1.Value = i;            
-            TextFile.Text = progressBar1.Value.ToString();*/
-            TextFile.Text = i.ToString();
+            TextFile.Text = progressBar1.Value.ToString();
+            //TextFile.Text = i.ToString();
             //listBox1.SelectedIndex = 0;
         }
         private void CountWord_Click(object sender, RoutedEventArgs e)
