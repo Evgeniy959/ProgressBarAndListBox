@@ -37,18 +37,20 @@
         <ProgressBar Width="1000" Height="20"
                  Name="progressBar1">
         </ProgressBar>
-        
-
         <Button x:Name="Button_OpenFile" 
-                    Content="Open File..." 
-                    Style="{StaticResource Style_Button_OpenFile}"
-                    Click="OpenFile_Click"/>
-            <Button x:Name="Button_CountText_Click" 
-                    Content="Count Text" 
-                    Style="{StaticResource Style_Button_OpenFile}"
-                    Click="CountText_Click"/>
-            <ListBox x:Name="listBox1" Height="100" Width="500" SelectionChanged = "listBox1_SelectedValueChanged"> 
-            </ListBox>
+                Content="Open File..." 
+                Style="{StaticResource Style_Button_OpenFile}"
+                Click="OpenFile_Click"/>
+        <Button x:Name="Button_CountText_Click" 
+                Content="Count Text" 
+                Style="{StaticResource Style_Button_OpenFile}"
+                Click="CountText_Click"/>
+        <Button x:Name="Button_CountWord_Click" 
+                Content="Count Word" 
+                Style="{StaticResource Style_Button_OpenFile}"
+                Click="CountWord_Click"/>
+        <ListBox x:Name="listBox1" Height="100" Width="500" SelectionChanged = "listBox1_SelectedValueChanged"> 
+        </ListBox>
         </StackPanel>
         <TextBox x:Name="TextFile" Grid.Row="1"  VerticalScrollBarVisibility="Visible" AcceptsReturn="True" SpellCheck.IsEnabled="True" Language="ru-Ru"/>
 

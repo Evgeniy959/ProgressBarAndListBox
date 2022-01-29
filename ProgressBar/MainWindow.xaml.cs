@@ -22,7 +22,6 @@ namespace ProgressBar
     /// </summary>
     public partial class MainWindow : Window
     {
-        string path = null;
         public MainWindow()
         {
             InitializeComponent();
@@ -30,47 +29,36 @@ namespace ProgressBar
         private void OpenFile_Click(object sender, RoutedEventArgs e)
         {
             var filePath = OpenFile();
-            //TextFile.Text = File.ReadAllText(filePath);
-            //TextFile.Text = filePath.Length.ToString();
-            //var fileByte = filePath.Length.ToString();
+            StreamReader inStream = new StreamReader(filePath);
             progressBar1.Maximum = filePath.Length;
-            int i = 0;
-            //foreach (var b in filePath) 
-            //while (filePath.Length != 0) 
-            while (File.ReadAllBytes(filePath) != null) 
-            {
-                byte[] bytes = File.ReadAllBytes(filePath);
-                i++;
-                progressBar1.Value = bytes[i];
-                //bytes[i];
-            }
+            byte[] bytes = File.ReadAllBytes(filePath);
             //progressBar1.Value = i;
-            TextFile.Text = progressBar1.Value.ToString();
-
-
-            //var arrByte = File.ReadAllBytes(filePath);
-            //path = filePath;
-
+            //TextFile.Text = progressBar1.Value.ToString();
+            TextFile.Text = bytes.Length.ToString();
         }
         private void CountText_Click(object sender, RoutedEventArgs e)
         {
             var filePath = OpenFile();
-            path = filePath;
             StreamReader inStream = new StreamReader(filePath);
             int i = 0;
-            string line = "";
-            while ((line = inStream.ReadLine()) != null)
+            while ( inStream.EndOfStream != true)
             {
                 listBox1.Items.Add(inStream.ReadLine());
-                //listBox1.Items.Add(line);
                 i++;
-                
             }
             /*progressBar1.Maximum = i;
-            TextFile.Text = progressBar1.Maximum.ToString();*/
-            progressBar1.Value = i;
-            TextFile.Text = progressBar1.Value.ToString();
-            listBox1.SelectedIndex = 0;
+            TextFile.Text = progressBar1.Maximum.ToString();
+            progressBar1.Value = i;            
+            TextFile.Text = progressBar1.Value.ToString();*/
+            TextFile.Text = i.ToString();
+            //listBox1.SelectedIndex = 0;
+        }
+        private void CountWord_Click(object sender, RoutedEventArgs e)
+        {
+            var filePath = OpenFile();
+            var str = File.ReadAllText(filePath); 
+            string[] textStr = str.Split(' ', '\n');
+            TextFile.Text = textStr.Length.ToString();
         }
         private string OpenFile()
         {
@@ -78,35 +66,15 @@ namespace ProgressBar
             openFileDialog.Filter = "Text Files (*.txt)|*.txt";
             return openFileDialog.ShowDialog() == true ? openFileDialog.FileName : string.Empty;
         }
-        /*private int Count()
-        {
-            ProgressBar progbar = new ProgressBar();
-            progbar.IsIndeterminate = false;
-            
-        }*/
-        
-
-        /*private void button1_Click(object sender, EventArgs e)
-        {
-            StreamReader inStream = new StreamReader("filePath");
-            int i = 0;
-            string line = "";
-            while ((line = inStream.ReadLine()) != null)
-            {
-                listBox1.Items.Add(inStream.ReadLine());
-                i++;
-            }
-            progressBar1.Maximum = i;
-            listBox1.SelectedIndex = 0;
-        }*/
-
         private void listBox1_SelectedValueChanged(object sender, EventArgs e)
         {
             /*if (listBox1.SelectedIndex != -1)
             {
-                progressBar1.Value = listBox1.SelectedIndex;
+                progressBar1.Value = listBox1.SelectedIndex+1;
             }*/
-            progressBar1.Value = listBox1.SelectedIndex;
+            progressBar1.Value = listBox1.SelectedIndex+1;
+            TextFile.Text = listBox1.SelectedItem.ToString();
+
         }
     }
 }
