@@ -11,20 +11,9 @@
             <Setter Property="Margin" Value="5"/>
         </Style>
 
-        <Style x:Key="Style_Image" TargetType="Image">
-            <Setter Property="Stretch" Value="Uniform"/>
-            <Setter Property="Width" Value="790"/>
-            <Setter Property="Height" Value="430"/>
-        </Style>
-
-        <Style x:Key="Style_Button_OpenFile" TargetType="Button"
+        <Style x:Key="Style_Button" TargetType="Button"
                BasedOn="{StaticResource Style_Default}">
             <Setter Property="Width" Value="500"/>
-        </Style>
-        <Style x:Key="Style_Button_Color" TargetType="Button"
-               BasedOn="{StaticResource Style_Default}">
-            <Setter Property="Width" Value="15"/>
-            <Setter Property="Height" Value="15"/>
         </Style>
     </Window.Resources>
     <Grid>
@@ -33,26 +22,24 @@
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
         <StackPanel>
-        
-        <ProgressBar Width="1000" Height="20"
+            <ProgressBar Width="1000" Height="20"
                  Name="progressBar1">
-        </ProgressBar>
-        <Button x:Name="Button_OpenFile" 
-                Content="Open File..." 
-                Style="{StaticResource Style_Button_OpenFile}"
-                Click="OpenFile_Click"/>
-        <Button x:Name="Button_CountText_Click" 
-                Content="Count Text" 
-                Style="{StaticResource Style_Button_OpenFile}"
+            </ProgressBar>
+            <Button x:Name="Button_CountByte" 
+                Content="CountByte..." 
+                Style="{StaticResource Style_Button}"
+                Click="CountByte_Click"/>
+            <Button x:Name="Button_CountText_Click" 
+                Content="Count Text..." 
+                Style="{StaticResource Style_Button}"
                 Click="CountText_Click"/>
-        <Button x:Name="Button_CountWord_Click" 
-                Content="Count Word" 
-                Style="{StaticResource Style_Button_OpenFile}"
+            <Button x:Name="Button_CountWord_Click" 
+                Content="Count Word..." 
+                Style="{StaticResource Style_Button}"
                 Click="CountWord_Click"/>
-        <ListBox x:Name="listBox1" Height="100" Width="500" SelectionChanged = "listBox1_SelectedValueChanged"> 
-        </ListBox>
+            <ListBox x:Name="listBox1" Height="100" Width="500" SelectionChanged = "listBox1_SelectedValueChanged"> 
+            </ListBox>
         </StackPanel>
         <TextBox x:Name="TextFile" Grid.Row="1"  VerticalScrollBarVisibility="Visible" AcceptsReturn="True" SpellCheck.IsEnabled="True" Language="ru-Ru"/>
-
     </Grid>
 </Window>

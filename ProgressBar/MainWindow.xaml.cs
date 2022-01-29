@@ -26,7 +26,7 @@ namespace ProgressBar
         {
             InitializeComponent();
         }
-        private void OpenFile_Click(object sender, RoutedEventArgs e)
+        private void CountByte_Click(object sender, RoutedEventArgs e)
         {
             var filePath = OpenFile();
             StreamReader inStream = new StreamReader(filePath);
