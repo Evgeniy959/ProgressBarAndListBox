@@ -23,7 +23,7 @@
         </Grid.RowDefinitions>
         <StackPanel>
             <ProgressBar Width="1000" Height="20"
-                 Name="progressBar1">
+                 Name="ProgressBar1">
             </ProgressBar>
             <Button x:Name="Button_CountByte" 
                 Content="CountByte..." 
