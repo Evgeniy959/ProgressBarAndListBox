@@ -56,7 +56,8 @@ namespace ProgressBar
         private void CountWord_Click(object sender, RoutedEventArgs e)
         {
             var filePath = OpenFile();
-            var str = File.ReadAllText(filePath); 
+            var str = File.ReadAllText(filePath);
+            listBox1.Items.Add(str);
             string[] textStr = str.Split(' ', '\n');
             TextFile.Text = textStr.Length.ToString();
         }
