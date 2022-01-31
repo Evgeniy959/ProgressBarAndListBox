@@ -37,9 +37,9 @@
                 Content="Count Word..." 
                 Style="{StaticResource Style_Button}"
                 Click="CountWord_Click"/>
-            <ListBox x:Name="listBox1" Height="100" Width="500" SelectionChanged = "listBox1_SelectedValueChanged"> 
-            </ListBox>
+            <ListBox x:Name="listBox1" Height="100" Width="500" SelectionChanged = "listBox1_SelectedValueChanged"/>
+            <TextBox x:Name="TextFile" Height="50" Width="200"/>
         </StackPanel>
-        <TextBox x:Name="TextFile" Grid.Row="1"  VerticalScrollBarVisibility="Visible" AcceptsReturn="True" SpellCheck.IsEnabled="True" Language="ru-Ru"/>
+        <TextBox x:Name="TextFile1" Grid.Row="1"  VerticalScrollBarVisibility="Visible" AcceptsReturn="True" SpellCheck.IsEnabled="True" Language="ru-Ru"/>
     </Grid>
 </Window>

@@ -54,7 +54,7 @@ namespace ProgressBar
         {
             var filePath = OpenFile();
             var str = File.ReadAllText(filePath);
-            listBox1.Items.Add(str);
+            TextFile1.Text = str;
             string[] textStr = str.Split(' ', '\n');
             TextFile.Text = textStr.Length.ToString();
             ProgressBar1.Value = textStr.Length;
