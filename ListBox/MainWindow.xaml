@@ -7,17 +7,10 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <StackPanel>
-        <Label  Content="Введите имя" Height="36" Width="444"/>
-        <TextBox x:Name="Add1"  Text="Имя, Фамилия, e-mail, телефон:"  TextWrapping="Wrap" Width="444" Height="68"/>
-        <Label  Content="Введите фамилию" Height="36" Width="444"/>
-        <TextBox x:Name="Add2"  TextWrapping="Wrap" Width="444" Height="68"/>
+        <Label  Content="Заполните анкету (Имя, Фамилия, e-mail, телефон)" Height="36" Width="444"/>
+        <TextBox x:Name="AddText" TextWrapping="Wrap" Width="444" Height="68"/>
         <Button  x:Name="AddButton" Content="Добавить" Height="45" Width="444" Click="AddButton_Click"/>
-        <Button  x:Name="EditButton" Content="Редактировать" Height="45" Width="444" Click="EditButton_Click"/>
-        <Label Content="Список покупок" Height="36" Width="444"/>
-        <ListBox x:Name="List" Width="444" SelectionChanged="List_OnSelectionChanged">
-        </ListBox>
-        <Label Content="Введите товар" Height="36" Width="444"/>
-        <TextBox x:Name="Delete" TextWrapping="Wrap" Width="444" Height="68"/>
-        <Button  x:Name="DeleteButton" Content="Удалить" Height="45" Width="444" Click="DeleteButton_Click"/>
+        <Label Content="Список пользователей" Height="36" Width="444"/>
+        <ListBox x:Name="List" Width="444" Height="68" SelectionChanged="List_OnSelectionChanged"/>
     </StackPanel>
 </Window>

@@ -30,35 +30,15 @@ namespace ListBox
         }
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
-            _list.Add(Add1.Text);
-            //_list.Add(Add2.Text);
-        }
-        private void EditButton_Click(object sender, RoutedEventArgs e)
-        {
-            if (_list.Contains(List.SelectedItem))
-            {
-                Add1.Text = List.SelectedItem.ToString();
-                //_list.Add(List.SelectedItem.ToString());
-            }
-            //List.ItemsSource = _list;
-        }
-
-        private void DeleteButton_Click(object sender, RoutedEventArgs e)
-        {
-            if (_list.Contains(Delete.Text))
-            {
-                _list.Remove(Delete.Text);
-            }
+            _list.Add(AddText.Text);
         }
         private void List_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (_list.Contains(List.SelectedItem))
             {
-                Add1.Text = List.SelectedItem.ToString();
+                AddText.Text = List.SelectedItem.ToString();
                 _list.Remove(List.SelectedItem.ToString());                
             }
         }
-
-
     }
 }
