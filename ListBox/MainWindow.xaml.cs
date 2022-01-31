@@ -30,7 +30,13 @@ namespace ListBox
         }
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
-            _list.Add(AddText.Text);
+            MessageBoxResult messageInfo;
+            string messageBox = "Пользователь уже существует";
+            if (!_list.Contains(AddText.Text))
+            {
+                _list.Add(AddText.Text);
+            }
+            else messageInfo = MessageBox.Show(messageBox);
         }
         private void List_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
