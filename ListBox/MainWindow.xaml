@@ -17,6 +17,7 @@
                 </ToolTip>
             </TextBox.ToolTip>
         </TextBox>
+        <Button  x:Name="OpenButton" Content="Открыть список" Height="45" Width="444" Click="OpenButton_Click"/>
         <Button  x:Name="AddButton" Content="Добавить" Height="45" Width="444" Click="AddButton_Click"/>
         <Label Content="Список пользователей" Height="36" Width="444" FontSize="14"/>
         <ListBox x:Name="List" Width="444" Height="68" SelectionChanged="List_OnSelectionChanged"/>
