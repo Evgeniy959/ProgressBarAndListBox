@@ -15,6 +15,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Xml.Serialization;
 
 namespace ListBox
 {
@@ -23,77 +24,48 @@ namespace ListBox
     /// </summary>
     public partial class MainWindow : Window
     {
-        public ObservableCollection<string> _list;
+        public ObservableCollection<string> list;
         public MainWindow()
         {
             InitializeComponent();
-            _list = new ObservableCollection<string>();
-            List.ItemsSource = _list;
+            list = new ObservableCollection<string>();
+            ListUsers.ItemsSource = list;
         }
-        private void OpenButton_Click(object sender, RoutedEventArgs e)
+        private void OpenTXTButton_Click(object sender, RoutedEventArgs e)
         {
-            var path = OpenFile();
-            //StreamReader file = new StreamReader(path);
-            using var file = new StreamReader(path);
-            /*string line;
-            while ((line = file.ReadLine()) != null)*/
-            while (file.EndOfStream != true)
-            {
-                _list.Add(file.ReadLine());
-            }
-            //ExportImport.ImportToTXTFile(List.Items);
+            list.Clear();
+            ExportImport.ImportFromTXTFile(list);
+        }
+        private void OpenXMLButton_Click(object sender, RoutedEventArgs e)
+        {
+            list.Clear();
+            ExportImport.ImportFromXMLFile(list);
         }
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
-            //string str = null;
             MessageBoxResult messageInfo;
             string messageBox = "Пользователь уже существует";
-            if (!_list.Contains(AddText.Text))
+            if (!list.Contains(AddText.Text))
             {
-                _list.Add(AddText.Text);
-                //ExportImport.ExportToTXTFile(AddText.Text);
-                //ExportImport.ExportToTXTFile(_list.Contains));
-                //ExportImport.ExportToTXTFile(_list.ToString());
-
-                //var path = "NEW.txt";
-                var path = OpenFile();
-                using var file = new StreamWriter(path, append: false);
-                foreach (var item in _list)
-                    file.WriteLine(item);
+                list.Add(AddText.Text);
             }
             else messageInfo = MessageBox.Show(messageBox);
         }
+        private void AddTXTButton_Click(object sender, RoutedEventArgs e)
+        {
+            ExportImport.ExportToTXTFile(list);
+        }
+        private void AddXMLButton_Click(object sender, RoutedEventArgs e)
+        {
+            ExportImport.ExportToXMLFile(list);
+        }
         private void List_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (_list.Contains(List.SelectedItem))
+            if (list.Contains(ListUsers.SelectedItem))
             {
-                AddText.Text = List.SelectedItem.ToString();
-                _list.Remove(List.SelectedItem.ToString());                
+                AddText.Text = ListUsers.SelectedItem.ToString();
+                list.Remove(ListUsers.SelectedItem.ToString());                
             }
-        }
-        //public static string ImportToTXTFile(string path )
-        /*public static string ImportToTXTFile()
-        {
-            var path = OpenFile();
-            //path = OpenFile();
-            using var file = new StreamReader(path);
-            //string str = File.ReadAllText(path);
-            //string[] str = File.ReadAllLines(path);
-            //string str = null;
-            while (file.EndOfStream != true)
-            {
-                str = file.ReadLine();
-                //return str;
-            }
-            //str = file.ReadLine();
-            //str = File.ReadAllText(path);
-            return str;
-        }*/
-        private string OpenFile()
-        {
-            var openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "Text Files (*.txt)|*.txt";
-            return openFileDialog.ShowDialog() == true ? openFileDialog.FileName : string.Empty;
         }
     }
 }

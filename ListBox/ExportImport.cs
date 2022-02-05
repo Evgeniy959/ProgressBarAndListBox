@@ -12,51 +12,53 @@ namespace ListBox
 {
     public class ExportImport
     {
-        public static void ExportToTXTFile(string str)
+        public static void ExportToTXTFile(ObservableCollection<string> list)
         {
-            var list = new MainWindow();
             var path = OpenFile();
-            using var file = new StreamWriter(path, append: true);
-            foreach (var item in list._list)
+            using var file = new StreamWriter(path, append: false);
+            foreach (var item in list)
                 file.WriteLine(item);
         }
-        //public static string ImportToTXTFile(string path )
-        /*public static string ImportToTXTFile(string str)
+        public static ObservableCollection<string> ImportFromTXTFile(ObservableCollection<string> list)
         {
             var path = OpenFile();
-            //path = OpenFile();
             using var file = new StreamReader(path);
-            //string str = File.ReadAllText(path);
-            //string[] str = File.ReadAllLines(path);
-            //string str = null;
             while (file.EndOfStream != true) 
             {
-                str = file.ReadLine();
-                //return str;
+                list.Add(file.ReadLine());
             }
-                //str = file.ReadLine();
-            //str = File.ReadAllText(path);
-            return str;
-        }*/
-        //public static void ExportToXMLFile(ObservableCollection<Student> students, string path)
-        /*public static void ExportToXMLFile(string str, string path)
+            return list;
+        }
+        public static void ExportToXMLFile(ObservableCollection<string> list)
         {
+            var path = OpenFileXML();
             using var file = new StreamWriter(path, append: false);
-            var xml = new XmlSerializer(str.GetType());
-            xml.Serialize(file, str);
+            var xml = new XmlSerializer(list.GetType());
+            xml.Serialize(file, list);
 
         }
-        //public static ObservableCollection<Student> ImportFromXMLFile(string path)
-        public static string ImportFromXMLFile(string path)
+        public static ObservableCollection<string> ImportFromXMLFile(ObservableCollection<string> list)
         {
+            var path = OpenFileXML();
             using var file = new StreamReader(path);
-            var xml = new XmlSerializer(typeof(string));
-            return (string)xml.Deserialize(file);
-        }*/
+            var xml = new XmlSerializer(list.GetType());
+            var listXml = (ObservableCollection<string>)xml.Deserialize(file);
+            foreach (var item in listXml)
+            {
+                list.Add(item);
+            }
+            return list;
+        }
         public static string OpenFile()
         {
             var openFileDialog = new OpenFileDialog();
             openFileDialog.Filter = "Text Files (*.txt)|*.txt";
+            return openFileDialog.ShowDialog() == true ? openFileDialog.FileName : string.Empty;
+        }
+        public static string OpenFileXML()
+        {
+            var openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Xml Files (*.xml)|*.xml";
             return openFileDialog.ShowDialog() == true ? openFileDialog.FileName : string.Empty;
         }
     }
