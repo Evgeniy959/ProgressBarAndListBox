@@ -1,0 +1,28 @@
+﻿<Window x:Class="ListBox.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ListBox"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="550" Width="800">
+    <StackPanel>
+        <Label  Content="Заполните анкету (Имя, Фамилия, e-mail, телефон)" Height="36" Width="444" FontSize="14"/>
+        <TextBox x:Name="AddText" TextWrapping="Wrap" Width="444" Height="68">
+            <TextBox.ToolTip>
+                <ToolTip Width="300" Height="30" Background="Lavender">
+                    <StackPanel>
+                        <TextBlock Text="Введите Имя, Фамилия, e-mail, телефон" FontSize="14"/>
+                    </StackPanel>
+                </ToolTip>
+            </TextBox.ToolTip>
+        </TextBox>
+        <Button  x:Name="OpenTXTButton" Content="Открыть список txt" Height="45" Width="444" Click="OpenTXTButton_Click"/>
+        <Button  x:Name="OpenXMLButton" Content="Открыть список xml" Height="45" Width="444" Click="OpenXMLButton_Click"/>
+        <Button  x:Name="AddButton" Content="Добавить или редактировать" Height="45" Width="444" Click="AddButton_Click"/>
+        <Button  x:Name="AddTXTButton" Content="Добавить в txt " Height="45" Width="444" Click="AddTXTButton_Click"/>
+        <Button  x:Name="AddXMLButton" Content="Добавить в xml" Height="45" Width="444" Click="AddXMLButton_Click"/>
+        <Label Content="Список пользователей" Height="36" Width="444" FontSize="14"/>
+        <ListBox x:Name="ListUsers" Width="444" Height="68" SelectionChanged="List_OnSelectionChanged"/>
+    </StackPanel>
+</Window>

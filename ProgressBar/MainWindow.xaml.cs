@@ -22,16 +22,42 @@ namespace ProgressBar
     /// </summary>
     public partial class MainWindow : Window
     {
-        string path = null;
         public MainWindow()
         {
             InitializeComponent();
         }
-        /*private void OpenFile_Click(object sender, RoutedEventArgs e)
+        private void CountByte_Click(object sender, RoutedEventArgs e)
         {
-            var pathFile = OpenFile();
-            TextFile.Text = File.ReadAllText(pathFile);
-            path = pathFile;
+            var filePath = OpenFile();
+            byte[] bytes = File.ReadAllBytes(filePath);
+            TextFile.Text = bytes.Length.ToString();
+            ProgressBar1.Value = bytes.Length;
+        }
+        private void CountText_Click(object sender, RoutedEventArgs e)
+        {
+            var filePath = OpenFile();
+            StreamReader inStream = new StreamReader(filePath);
+            int i = 0;
+            while (inStream.EndOfStream != true)
+            {
+                listBox1.Items.Add(inStream.ReadLine());
+                i++;
+            }
+            /*ProgressBar1.Maximum = i;
+            TextFile.Text = ProgressBar1.Maximum.ToString();*/
+            ProgressBar1.Value = i;            
+            TextFile.Text = ProgressBar1.Value.ToString();
+            //TextFile.Text = i.ToString();
+            //listBox1.SelectedIndex = 0;
+        }
+        private void CountWord_Click(object sender, RoutedEventArgs e)
+        {
+            var filePath = OpenFile();
+            var str = File.ReadAllText(filePath);
+            TextFile1.Text = str;
+            string[] textStr = str.Split(' ', '\n');
+            TextFile.Text = textStr.Length.ToString();
+            ProgressBar1.Value = textStr.Length;
         }
         private string OpenFile()
         {
@@ -39,11 +65,15 @@ namespace ProgressBar
             openFileDialog.Filter = "Text Files (*.txt)|*.txt";
             return openFileDialog.ShowDialog() == true ? openFileDialog.FileName : string.Empty;
         }
-        private int Count()
+        private void listBox1_SelectedValueChanged(object sender, EventArgs e)
         {
-            ProgressBar progbar = new ProgressBar();
-            progbar.IsIndeterminate = false;
-            
-        }*/
+            /*if (listBox1.SelectedIndex != -1)
+            {
+                progressBar1.Value = listBox1.SelectedIndex+1;
+            }*/
+            ProgressBar1.Value = listBox1.SelectedIndex+1;
+            TextFile.Text = listBox1.SelectedItem.ToString();
+
+        }
     }
 }
